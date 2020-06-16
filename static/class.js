@@ -3,6 +3,8 @@ class Player{
     this.name = name;
     this.points = "0";
     this.games = 0;
+    this.sets = 0;
+  
   }
   //Add set check and win check
   addPoint(player2){
@@ -16,8 +18,11 @@ class Player{
       if (player2.points != "40"){
         this.points = "0";
         this.games++;
-      } else{
+      } else if(player2.points == "40"){
         this.points = "Adv";
+        player2.points = "40";
+      } else if(player2.points == "Adv"){
+        this.points = "40";
         player2.points = "40";
       }
     } else if(this.points == "Adv"){
