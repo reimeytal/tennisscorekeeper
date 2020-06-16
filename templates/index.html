@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Home - Tennis score keeper</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", () =>{
+        document.querySelector("#create-game").onclick  = () =>{
+          location.href = "{{url_for('create_game')}}";
+        }
+        document.querySelector("#join-game").onclick = () =>{
+          location.href  = "{{url_for('join_game')}}";
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Tennis score keeper</h1>
+    <button id="create-game" class="select-buttons">Create Game</button>
+    <button id="join-game" class="select-buttons">Join Game</button>
+  </body>
+</html>
