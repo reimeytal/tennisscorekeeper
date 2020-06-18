@@ -29,8 +29,8 @@
         <td id="player1_games">{{game.infodictionary["player1_score"][1]}}</td>
         <td id="player1_points">{{game.infodictionary["player1_score"][2]}}</td>
         {% if host %}
-        <td><button id="player1_add">+</button></td>
-        <td><button id="player1_remove">-</button></td>
+        <td><button id="player_add" data-player="1">+</button></td>
+        <td><button id="player_remove" data-player="1">-</button></td>
         {% endif %}
       </tr>
       <tr>
@@ -39,8 +39,8 @@
         <td id="player2_games">{{game.infodictionary["player2_score"][1]}}</td>
         <td id="player2_points">{{game.infodictionary["player2_score"][2]}}</td>
         {% if host %}
-        <td><button id="player2_add">+</button></td>
-        <td><button id="player2_remove">-</button></td>
+        <td><button id="player_add" data-player="2">+</button></td>
+        <td><button id="player_remove"data-player="2">-</button></td>
         {% endif %}
       </tr>
     </table>

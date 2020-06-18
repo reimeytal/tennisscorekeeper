@@ -11,7 +11,7 @@ games = [None, None, None, None, None, None, None, None, None, None]
 class Game:
     def __init__(self, player1, player2, id):
         self.id = id
-        self.infodictionary = {"player1_name":player1, "player1_score":(0, 0, 0), "player2_name":player2, "player2_score":(0, 0, 0)}
+        self.infodictionary = {"player1_name":player1, "player1_score":["0", "0", "0"], "player2_name":player2, "player2_score":["0", "0", "0"]}
 
 @app.route("/")
 def index():
@@ -41,7 +41,11 @@ def game(id):
 
 @socketio.on("host-update")
 def update(data):
-    pass
+    p1 = data["player1_score"]
+    p2 = data["player2_score"]
+    games[int(data["id"])].infodictionary["player1_score"] = p1
+    games[int(data["id"])].infodictionary["player2_score"] = p2
+    emit("update", {"player1_score":p1, "player2_score":p2}, room=data["id"])
 
 @socketio.on("joingame")
 def join(data):
