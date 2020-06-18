@@ -82,4 +82,7 @@ class Player{
       this.points--;
     }
   }
+  getScore(){
+    return [this.sets.toString(), this.games.toString(), this.points.toString()]
+  }
 }
