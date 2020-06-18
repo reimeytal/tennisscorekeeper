@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Game - Tennis score keeper</title>
+    <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
+    <script src="{{url_for('static', filename='class.js')}}"></script>
+    <script src="{{url_for('static', filename='main.js')}}">
+    initialize_game({{game["player1_name"]}}, {{game["player2_name"]}});
+    </script>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+  </head>
+  <body>
+    <h1 id="idheader">ID = {{game.id}}</h1>
+    <table>
+      <tr>
+        <th>Players</th>
+        <th>Sets</th>
+        <th>Games</th>
+        <th>Points</th>
+        {% if host %}
+        <th>Add point</th>
+        <th>Remove point</th>
+        {% endif %}
+      </tr>
+      <tr>
+        <td id="player1_name">{{game.infodictionary["player1_name"]}}</td>
+        <td id="player1_sets">{{game.infodictionary["player1_score"][0]}}</td>
+        <td id="player1_games">{{game.infodictionary["player1_score"][1]}}</td>
+        <td id="player1_points">{{game.infodictionary["player1_score"][2]}}</td>
+        {% if host %}
+        <td><button id="player1_add">+</button></td>
+        <td><button id="player1_remove">-</button></td>
+        {% endif %}
+      </tr>
+      <tr>
+        <td id="player2_name">{{game.infodictionary["player2_name"]}}</td>
+        <td id="player2_sets">{{game.infodictionary["player2_score"][0]}}</td>
+        <td id="player2_games">{{game.infodictionary["player2_score"][1]}}</td>
+        <td id="player2_points">{{game.infodictionary["player2_score"][2]}}</td>
+        {% if host %}
+        <td><button id="player2_add">+</button></td>
+        <td><button id="player2_remove">-</button></td>
+        {% endif %}
+      </tr>
+    </table>
+  </body>
+</html>
