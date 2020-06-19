@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Game - Tennis score keeper</title>
+    <title>Game - Tennis Score Keeper</title>
     <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
     <script src="{{url_for('static', filename='class.js')}}"></script>
     <script src="{{url_for('static', filename='main.js')}}">
@@ -24,23 +24,23 @@
         {% endif %}
       </tr>
       <tr>
-        <td id="player1_name">{{game.infodictionary["player1_name"]}}</td>
-        <td id="player1_sets">{{game.infodictionary["player1_score"][0]}}</td>
-        <td id="player1_games">{{game.infodictionary["player1_score"][1]}}</td>
-        <td id="player1_points">{{game.infodictionary["player1_score"][2]}}</td>
+        <td class="player1" data-type="name" id="p1name">{{game.infodictionary["player1_name"]}}</td>
+        <td class="player1" data-type="sets">{{game.infodictionary["player1_score"][0]}}</td>
+        <td class="player1" data-type="games">{{game.infodictionary["player1_score"][1]}}</td>
+        <td class="player1" data-type="points">{{game.infodictionary["player1_score"][2]}}</td>
         {% if host %}
-        <td><button id="player_add" data-player="1">+</button></td>
-        <td><button id="player_remove" data-player="1">-</button></td>
+        <td><button class="player_add" data-player="1">+</button></td>
+        <td><button class="player_remove" data-player="1">-</button></td>
         {% endif %}
       </tr>
       <tr>
-        <td id="player2_name">{{game.infodictionary["player2_name"]}}</td>
-        <td id="player2_sets">{{game.infodictionary["player2_score"][0]}}</td>
-        <td id="player2_games">{{game.infodictionary["player2_score"][1]}}</td>
-        <td id="player2_points">{{game.infodictionary["player2_score"][2]}}</td>
+        <td class="player2" data-type="name" id="p2name">{{game.infodictionary["player2_name"]}}</td>
+        <td class="player2" data-type="sets">{{game.infodictionary["player2_score"][0]}}</td>
+        <td class="player2" data-type="games">{{game.infodictionary["player2_score"][1]}}</td>
+        <td class="player2" data-type="points">{{game.infodictionary["player2_score"][2]}}</td>
         {% if host %}
-        <td><button id="player_add" data-player="2">+</button></td>
-        <td><button id="player_remove"data-player="2">-</button></td>
+        <td><button class="player_add" data-player="2">+</button></td>
+        <td><button class="player_remove"data-player="2">-</button></td>
         {% endif %}
       </tr>
     </table>
