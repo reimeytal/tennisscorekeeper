@@ -5,8 +5,9 @@
     <title>Game - Tennis Score Keeper</title>
     <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
     <script src="{{url_for('static', filename='class.js')}}"></script>
-    <script src="{{url_for('static', filename='main.js')}}">
-    initialize_game({{game["player1_name"]}}, {{game["player2_name"]}});
+    <script src="{{url_for('static', filename='main.js')}}"></script>
+    <script type="text/javascript">
+    initialize_game("{{game.id}}", "{{game.infodictionary['player1_name']}}", "{{game.infodictionary['player2_name']}}");
     </script>
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
   </head>

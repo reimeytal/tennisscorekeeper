@@ -4,7 +4,6 @@ from flask_socketio import SocketIO, emit, join_room, leave_room, close_room
 #close room disconnects everyone from room
 
 app = Flask(__name__)
-print("App:", app)
 socket = SocketIO(app)
 app.config["SECRET_KEY"] = 'secret-key'
 
@@ -30,11 +29,10 @@ def create_game_post():
     for gameid, game in enumerate(games):
         if game == None:
             game = Game(request.form.get("player1"), request.form.get("player2"), gameid)
+            games[gameid] = game
             session["host"] = gameid
-            break
-    else:
-        return "No game slot available" #Handle later
-    return None
+            return redirect(url_for('game', id=game.id))
+    return "No game slot available" #Handle later
 
 @app.route("/game/<id>")
 def game(id):
@@ -43,7 +41,7 @@ def game(id):
     else:
         return render_template("score.html", host=False, game=games[int(id)])
 
-@socketio.on("host-update")
+@socket.on("host-update")
 def update(data):
     p1 = data["player1_score"]
     p2 = data["player2_score"]
@@ -53,7 +51,7 @@ def update(data):
 
 #Handling join game
 '''
-@socketio.on("joingame")
+@socket.on("joingame")
 def join(data):
     r = data["room"]
     join_room(r)
@@ -67,5 +65,14 @@ def join_game():
 @app.route("/join_game/join", methods=["POST"])
 def join_game_post():
     id = request.form.get("id")
-    join_room(str(id))
     return redirect(url_for("game", id=id))
+
+@app.route("/del")
+def delete_host():
+    games[int(session["host"])] = None
+    del session["host"]
+    return "Deleted data"
+
+@socket.on("jr")
+def join_r(data):
+    join_room(str(data["id"]))
