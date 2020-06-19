@@ -83,6 +83,11 @@ class Player{
     }
   }
   getScore(){
-    return [this.sets.toString(), this.games.toString(), this.points.toString()]
+    return [this.sets.toString(), this.games.toString(), this.points.toString()];
+  }
+  setScore(score){
+    this.score = score[0].parseInt();
+    this.games = score[1].parseInt();
+    this.points = score[2].parseInt();
   }
 }
