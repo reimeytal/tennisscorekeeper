@@ -1,10 +1,12 @@
-from flask import Flask, redirect, request, render_template, session
+from flask import Flask, redirect, request, render_template, session, url_for
 from flask_socketio import SocketIO, emit, join_room, leave_room, close_room
 
 #close room disconnects everyone from room
 
 app = Flask(__name__)
+print("App:", app)
 socket = SocketIO(app)
+app.config["SECRET_KEY"] = 'secret-key'
 
 games = [None, None, None, None, None, None, None, None, None, None]
 
@@ -23,6 +25,8 @@ def create_game():
 
 @app.route("/create_game/post", methods=["POST"])
 def create_game_post():
+    if "host" in session:
+        return "Already hosting a game" #Handle later
     for gameid, game in enumerate(games):
         if game == None:
             game = Game(request.form.get("player1"), request.form.get("player2"), gameid)
@@ -47,11 +51,21 @@ def update(data):
     games[int(data["id"])].infodictionary["player2_score"] = p2
     emit("update", {"player1_score":p1, "player2_score":p2}, room=data["id"])
 
+#Handling join game
+'''
 @socketio.on("joingame")
 def join(data):
     r = data["room"]
     join_room(r)
-#@app.route("/join_game")
-#def join_game():
-    #return render_template("join_game.html")
-#    return "join game"
+'''
+
+@app.route("/join_game")
+def join_game():
+    return render_template("join_game.html")
+    #join_game.html will redirect user to join_game_post. The socket will activate in join_game.html
+
+@app.route("/join_game/join", methods=["POST"])
+def join_game_post():
+    id = request.form.get("id")
+    join_room(str(id))
+    return redirect(url_for("game", id=id))
