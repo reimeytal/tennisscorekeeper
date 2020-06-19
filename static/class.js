@@ -1,4 +1,8 @@
 //Add win check and handling
+//Goes to tiebreaker after deuce **COMPLETED** CHECKED
+//Points dont reset after deuce and point subtracted point **Potentially related to last problem
+//Disable tiebreaker after tiebreaker **COMPLETED** CHECKED
+//Player's points dont reset after win for other player (sets and games)
 class Player{
   constructor(name){
     this.name = name;
@@ -14,38 +18,44 @@ class Player{
       } else if(this.points == "15"){
         this.points = "30";
       } else if(this.points  == "30"){
-        this.points == "40";
+        this.points = "40";
       } else if(this.points == "40"){
-        if (player2.points != "40"){
+        if(player2.points == "Adv"){
+          this.points = "40";
+          player2.points = "40";
+        } else if (player2.points != "40"){
           this.points = "0";
+          player2.points = "0";
           this.games++;
           if(this.games == 6 && player2.games <= 4){
             this.sets++;
             this.games = 0;
+            player2.games = 0;
           } else if(this.games == 7 && player2.games == 5){
             this.sets++;
             this.games = 0;
-          } else{
+            player2.games = 0;
+          } else if(this.games == 6 && player2.games == 6){
             this.tiebreaker = true;
             player2.tiebreaker = true;
           }
         } else if(player2.points == "40"){
           this.points = "Adv";
           player2.points = "40";
-        } else if(player2.points == "Adv"){
-          this.points = "40";
-          player2.points = "40";
         }
       } else if(this.points == "Adv"){
         this.points = "0";
+        player2.points = "0";
         this.games++;
         if(this.games == 6 && player2.games <= 4){
           this.sets++;
           this.games = 0;
+          player2.games = 0;
         } else if(this.games == 7 && player2.games == 5){
           this.sets++;
           this.games = 0;
-        } else{
+          player2.games = 0;
+        } else if(this.games == 6 && player2.games == 6){
           this.tiebreaker = true;
           player2.tiebreaker = true;
           this.points = 0;
@@ -60,6 +70,7 @@ class Player{
           this.sets++;
           this.games = 0;
           this.points = "0";
+          this.tiebreaker = false;
         } else{
           this.points++
         }
@@ -86,8 +97,8 @@ class Player{
     return [this.sets.toString(), this.games.toString(), this.points.toString()];
   }
   setScore(score){
-    this.score = score[0].parseInt();
-    this.games = score[1].parseInt();
-    this.points = score[2].parseInt();
+    this.score = score[0];
+    this.games = score[1];
+    this.points = score[2];
   }
 }
