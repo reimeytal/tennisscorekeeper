@@ -1,8 +1,4 @@
-//Add win check and handling
-//Goes to tiebreaker after deuce **COMPLETED** CHECKED
-//Points dont reset after deuce and point subtracted point **Potentially related to last problem
-//Disable tiebreaker after tiebreaker **COMPLETED** CHECKED
-//Player's points dont reset after win for other player (sets and games)
+//Add win check and handling (delete room and game)
 class Player{
   constructor(name){
     this.name = name;
@@ -77,7 +73,6 @@ class Player{
       }
     }
   }
-  //Potential tiebreaker bug
   removePoint(){
     if(!this.tiebreaker){
       if(this.points == "Adv"){
@@ -97,7 +92,7 @@ class Player{
     return [this.sets.toString(), this.games.toString(), this.points.toString()];
   }
   setScore(score){
-    this.score = score[0];
+    this.sets = score[0];
     this.games = score[1];
     this.points = score[2];
   }

@@ -36,8 +36,9 @@ def create_game_post():
 
 @app.route("/game/<id>")
 def game(id):
-    if int(id) == session["host"]:
-        return render_template("score.html", host=True, game=games[int(id)])
+    if "host" in session:
+        if int(id) == session["host"]:
+            return render_template("score.html", host=True, game=games[int(id)])
     else:
         return render_template("score.html", host=False, game=games[int(id)])
 
@@ -50,12 +51,6 @@ def update(data):
     emit("update", {"player1_score":p1, "player2_score":p2}, room=data["id"])
 
 #Handling join game
-'''
-@socket.on("joingame")
-def join(data):
-    r = data["room"]
-    join_room(r)
-'''
 
 @app.route("/join_game")
 def join_game():
@@ -64,15 +59,31 @@ def join_game():
 
 @app.route("/join_game/join", methods=["POST"])
 def join_game_post():
-    id = request.form.get("id")
-    return redirect(url_for("game", id=id))
+    id = request.form.get("gameid")
+    try:
+        if games[int(id)] != None:
+                return redirect(url_for("game", id=id))
+    except IndexError:
+        pass
+    return "Invalid game ID" #Handle invalid game id
 
-@app.route("/del")
-def delete_host():
-    games[int(session["host"])] = None
-    del session["host"]
-    return "Deleted data"
+'''
+@app.route("/del/<id>")
+def delete_host(id):
+    print("DELETE REQ RECEIVED")
+    if "host" in session:
+        if session["host"] == int(id):
+            games[int(id)] = None
+            del session["host"]
+            return jsonify({"success":True})
+'''
 
 @socket.on("jr")
 def join_r(data):
     join_room(str(data["id"]))
+
+'''
+@socket.on("lr")
+def leave_r(data):
+    leave_room(str(data["id"]))
+'''

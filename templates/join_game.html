@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Join Game - Tennis Score Keeper</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"">
+  </head>
+  <body>
+    <h1>Join Game</h1>
+    <form class="game-manager" action="{{url_for('join_game_post')}}" method="post">
+      <input type="number" name="gameid">
+      <button type="submit">Join game</button>
+    </form>
+  </body>
+</html>

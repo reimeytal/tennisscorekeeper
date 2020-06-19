@@ -71,10 +71,11 @@ function initialize_game(id, player1Name,  player2Name){
     sock.on('connect', ()=>{
       sock.emit("jr", {"id":id.toString()});
     })
+    /*
+    window.onunload = () => {
+      location.href = location.protocol+"//"+document.domain+":"+location.port+"/del/"+id.toString();
+      sock.emit("lr", {"id":id});
+    }
+    */
   });
 }
-/*
-document.addEventListener("beforeunload", () => {
-  //Create unload function here
-});
-*/
