@@ -3,14 +3,17 @@
   <head>
     <meta charset="utf-8">
     <title>Create Game - Tennis Score Keeper</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
   </head>
   <body>
     <h1>Create Game</h1>
-    <form class="game-manager" action="{{url_for('create_game_post')}}" method="post">
-      <input name="player1" placeholder="Player 1 Name">
-      <input name="player2" placeholder="Player 2 Name">
-      <button type="submit">Start</button>
+    <form action="{{url_for('create_game_post')}}" method="post">
+      <input name="player1" placeholder="Player 1 Name" autocomplete="off" class="inputs">
+      <input name="player2" placeholder="Player 2 Name" autocomplete="off" class="inputs">
+      <div class="seperation-divs">
+        <button type="submit" class="select-buttons">Start</button>
+      </div>
     </form>
   </body>
 </html>

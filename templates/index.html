@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <title>Home - Tennis Score Keeper</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
     <script type="text/javascript">
       document.addEventListener("DOMContentLoaded", () =>{
@@ -13,10 +14,14 @@
         }
       });
     </script>
+    <style media="screen">
+    </style>
   </head>
   <body>
     <h1>Tennis Score Keeper</h1>
     <button id="create-game" class="select-buttons">Create Game</button>
-    <button id="join-game" class="select-buttons">Join Game</button>
+    <div class="seperation-divs">
+      <button id="join-game" class="select-buttons">Join Game</button>
+    </div>
   </body>
 </html>

@@ -2,13 +2,16 @@
 <html lang="en" dir="ltr">
   <head>
     <title>Join Game - Tennis Score Keeper</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
   </head>
   <body>
     <h1>Join Game</h1>
-    <form class="game-manager" action="{{url_for('join_game_post')}}" method="post">
-      <input type="number" name="gameid">
-      <button type="submit">Join game</button>
+    <form action="{{url_for('join_game_post')}}" method="post">
+      <input type="number" name="gameid" class="inputs" autocomplete="off">
+      <div class="seperation-divs">
+        <button type="submit" class="select-buttons">Join game</button>
+      </div>
     </form>
   </body>
 </html>

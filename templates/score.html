@@ -9,10 +9,12 @@
     <script type="text/javascript">
     initialize_game("{{game.id}}", "{{game.infodictionary['player1_name']}}", "{{game.infodictionary['player2_name']}}");
     </script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
   </head>
   <body>
-    <h1 id="idheader">ID = {{game.id}}</h1>
+    <h1 id="idheader">Game ID = {{game.id}}</h1>
+    <div>
     <table>
       <tr>
         <th>Players</th>
@@ -25,7 +27,7 @@
         {% endif %}
       </tr>
       <tr>
-        <td class="player1" data-type="name" id="p1name">{{game.infodictionary["player1_name"]}}</td>
+        <td class="player1 name" data-type="name" id="p1name">{{game.infodictionary["player1_name"]}}</td>
         <td class="player1" data-type="sets">{{game.infodictionary["player1_score"][0]}}</td>
         <td class="player1" data-type="games">{{game.infodictionary["player1_score"][1]}}</td>
         <td class="player1" data-type="points">{{game.infodictionary["player1_score"][2]}}</td>
@@ -35,7 +37,7 @@
         {% endif %}
       </tr>
       <tr>
-        <td class="player2" data-type="name" id="p2name">{{game.infodictionary["player2_name"]}}</td>
+        <td class="player2 name" data-type="name" id="p2name">{{game.infodictionary["player2_name"]}}</td>
         <td class="player2" data-type="sets">{{game.infodictionary["player2_score"][0]}}</td>
         <td class="player2" data-type="games">{{game.infodictionary["player2_score"][1]}}</td>
         <td class="player2" data-type="points">{{game.infodictionary["player2_score"][2]}}</td>
@@ -46,5 +48,6 @@
       </tr>
     </table>
     <h1 id="win"></h1>
+    </div>
   </body>
 </html>
