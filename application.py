@@ -1,4 +1,4 @@
-from flask import Flask, redirect, request, render_template, session, url_for
+from flask import Flask, redirect, request, render_template, session, url_for, jsonify
 from flask_socketio import SocketIO, emit, join_room, leave_room, close_room
 
 #close room disconnects everyone from room
@@ -24,6 +24,7 @@ def create_game():
 
 @app.route("/create_game/post", methods=["POST"])
 def create_game_post():
+    print(session)
     if "host" in session:
         return "Already hosting a game" #Handle later
     for gameid, game in enumerate(games):
@@ -55,7 +56,6 @@ def update(data):
 @app.route("/join_game")
 def join_game():
     return render_template("join_game.html")
-    #join_game.html will redirect user to join_game_post. The socket will activate in join_game.html
 
 @app.route("/join_game/join", methods=["POST"])
 def join_game_post():
@@ -67,23 +67,22 @@ def join_game_post():
         pass
     return "Invalid game ID" #Handle invalid game id
 
-'''
-@app.route("/del/<id>")
-def delete_host(id):
-    print("DELETE REQ RECEIVED")
+@app.route("/del")
+def delete():
+    del session["host"]
+    return jsonify({"success":True})
+
+@socket.on("leave")
+def lv(data):
     if "host" in session:
-        if session["host"] == int(id):
-            games[int(id)] = None
-            del session["host"]
-            return jsonify({"success":True})
-'''
+        if str(session["host"]) == str(data["id"]):
+            games[int(data["id"])] = None
+            close_room(str(data["id"]))
+        else:
+                leave_room(str(data["id"]))
+    else:
+        leave_room(str(data["id"]))
 
 @socket.on("jr")
 def join_r(data):
     join_room(str(data["id"]))
-
-'''
-@socket.on("lr")
-def leave_r(data):
-    leave_room(str(data["id"]))
-'''

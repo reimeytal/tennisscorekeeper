@@ -1,4 +1,3 @@
-//Add win check and handling (delete room and game)
 class Player{
   constructor(name){
     this.name = name;
@@ -6,6 +5,7 @@ class Player{
     this.games = 0;
     this.sets = 0;
     this.tiebreaker = false;
+    this.win = false;
   }
   addPoint(player2){
     if(!this.tiebreaker){
@@ -27,9 +27,15 @@ class Player{
             this.sets++;
             this.games = 0;
             player2.games = 0;
+            if (this.sets == 3){
+              this.win = true;
+            }
           } else if(this.games == 7 && player2.games == 5){
             this.sets++;
             this.games = 0;
+            if (this.sets == 3){
+              this.win = true;
+            }
             player2.games = 0;
           } else if(this.games == 6 && player2.games == 6){
             this.tiebreaker = true;
@@ -47,10 +53,16 @@ class Player{
           this.sets++;
           this.games = 0;
           player2.games = 0;
+          if (this.sets == 3){
+            this.win = true;
+          }
         } else if(this.games == 7 && player2.games == 5){
           this.sets++;
           this.games = 0;
           player2.games = 0;
+          if (this.sets == 3){
+            this.win = true;
+          }
         } else if(this.games == 6 && player2.games == 6){
           this.tiebreaker = true;
           player2.tiebreaker = true;
@@ -67,6 +79,9 @@ class Player{
           this.games = 0;
           this.points = "0";
           this.tiebreaker = false;
+          if (this.sets == 3){
+            this.win = true;
+          }
         } else{
           this.points++
         }
@@ -89,7 +104,7 @@ class Player{
     }
   }
   getScore(){
-    return [this.sets.toString(), this.games.toString(), this.points.toString()];
+    return [this.sets.toString(), this.games.toString(), this.points.toString(), this.win];
   }
   setScore(score){
     this.sets = score[0];

@@ -2,6 +2,7 @@ function score(id, p1, p2){
   return {"id":id, "player1_score":p1, "player2_score":p2};
 }
 function initialize_game(id, player1Name,  player2Name){
+  var gamestat = "inprog"; //Change to finished when someone wins the game
   console.log("init");
   var player1  = new Player(player1Name);
   var player2 = new Player(player2Name);
@@ -67,15 +68,52 @@ function initialize_game(id, player1Name,  player2Name){
           x.innerHTML = player2.points;
         }
       }
+      if (data["player1_score"][3] == true){
+        btns = document.querySelectorAll(".player_add");
+        for(i=0;i<btns.length;i++){
+          btn = btns[i];
+          btn.disabled = true;
+        }
+        btns = document.querySelectorAll(".player_remove");
+        for(i=0;i<btns.length;i++){
+          btn = btns[i];
+          btn.disabled = true;
+        }
+        document.querySelector("#win").innerHTML = "Player 1 won";
+        sock.emit("leave", {"id":id});
+        gamestat = "finished";
+        const r = new XMLHttpRequest();
+        r.open("GET", "/del");
+        r.send();
+      } else if(data["player2_score"][3] == true){
+        btns = document.querySelectorAll(".player_add");
+        for(i=0;i<btns.length;i++){
+          btn = btns[i];
+          btn.disabled = true;
+        }
+        btns = document.querySelectorAll(".player_remove");
+        for(i=0;i<btns.length;i++){
+          btn = btns[i];
+          btn.disabled = true;
+        }
+        document.querySelector("#win").innerHTML = "Player 2 won";
+        sock.emit("leave", {"id":id});
+        gamestat = "finished";
+        const r = new XMLHttpRequest();
+        r.open("GET", "/del");
+        r.send();
+      }
     });
     sock.on('connect', ()=>{
       sock.emit("jr", {"id":id.toString()});
     })
-    /*
-    window.onunload = () => {
-      location.href = location.protocol+"//"+document.domain+":"+location.port+"/del/"+id.toString();
-      sock.emit("lr", {"id":id});
-    }
-    */
+    window.addEventListener("beforeunload", () => {
+      if (gamestat == "inprog"){
+        sock.emit("leave", {"id":id});
+        const r = new XMLHttpRequest();
+        r.open("GET", "/del");
+        r.send();
+      }
+    });
   });
 }
