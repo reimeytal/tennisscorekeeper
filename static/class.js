@@ -71,19 +71,20 @@ class Player{
         }
       }
     } else{
-      if(this.points < 7){
-        this.points++;
-      }  else{
-        if(this.points-player2.points >= 2){
+      this.points++;
+      if(this.points >= 7){
+        console.log("Points", this.points-player2.points);
+        if(parseInt(this.points)-parseInt(player2.points) >= 2){
           this.sets++;
           this.games = 0;
           this.points = "0";
           this.tiebreaker = false;
+          player2.tiebreaker = false;
+          player2.games = 0;
+          player2.points = "0";
           if (this.sets == 3){
             this.win = true;
           }
-        } else{
-          this.points++
         }
       }
     }
