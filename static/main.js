@@ -107,13 +107,13 @@ function initialize_game(id, player1Name,  player2Name){
     sock.on('connect', ()=>{
       sock.emit("jr", {"id":id.toString()});
     })
-    window.addEventListener("beforeunload", () => {
+    /*window.addEventListener("beforeunload", () => {
       if (gamestat == "inprog"){
         sock.emit("leave", {"id":id});
         const r = new XMLHttpRequest();
         r.open("GET", "/del");
         r.send();
       }
-    });
+    });*/
   });
 }

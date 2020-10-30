@@ -6,12 +6,18 @@
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
     <script type="text/javascript">
       document.addEventListener("DOMContentLoaded", () =>{
-        document.querySelector("#create-game").onclick  = () =>{
-          location.href = "{{url_for('create_game')}}";
-        }
+        {% if "host" in session %}
+          document.querySelector("#resume-game").onclick = () => {
+            location.href = "{{url_for('game', id=session['host'])}}";
+          };
+        {% else %}
+          document.querySelector("#create-game").onclick  = () =>{
+            location.href = "{{url_for('create_game')}}";
+          };
+        {% endif %}
         document.querySelector("#join-game").onclick = () =>{
           location.href  = "{{url_for('join_game')}}";
-        }
+        };
       });
     </script>
     <style media="screen">
@@ -19,7 +25,11 @@
   </head>
   <body>
     <h1>Tennis Score Keeper</h1>
-    <button id="create-game" class="select-buttons">Create Game</button>
+    {% if "host" in session %}
+      <button id="resume-game" class="select-buttons">Resume Game</button>
+    {% else %}
+      <button id="create-game" class="select-buttons">Create Game</button>
+    {% endif %}
     <div class="seperation-divs">
       <button id="join-game" class="select-buttons">Join Game</button>
     </div>
