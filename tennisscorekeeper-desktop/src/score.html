@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Game - Tennis Score Keeper</title>
+    <script src="score.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+    <link rel="stylesheet" href="../assets/css/style.css">
+  </head>
+  <body style="padding-top:35px">
+    <div class="topbar"></div>
+    <button type="button" id="back"><</button>
+    <button type="button" id="exit">X</button>
+    <h1 id="idheader"></h1>
+    <div>
+    <table>
+      <tr id="hdrrow">
+        <th>Players</th>
+        <th>Sets</th>
+        <th>Games</th>
+        <th>Points</th>
+      </tr>
+      <tr id="p1r">
+        <td class="player1 name" data-type="name" id="p1name"></td>
+        <td class="player1" data-type="sets"></td>
+        <td class="player1" data-type="games"></td>
+        <td class="player1" data-type="points"></td>
+        <td id="p1atd"></td>
+        <td id="p1rtd"></td>
+      </tr>
+      <tr id="p2r">
+        <td class="player2 name" data-type="name" id="p2name"></td>
+        <td class="player2" data-type="sets"></td>
+        <td class="player2" data-type="games"></td>
+        <td class="player2" data-type="points"></td>
+        <td id="p2atd"></td>
+        <td id="p2rtd"></td>
+      </tr>
+    </table>
+    <h1 id="win"></h1>
+    </div>
+  </body>
+</html>

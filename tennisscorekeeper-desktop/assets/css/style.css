@@ -1,0 +1,108 @@
+body{
+  text-align:center;
+  background:rgb(213, 255, 46);
+  color:black;
+  font-family:Roboto;
+  padding:0;
+  margin:0;
+  user-select:none;
+}
+.select-buttons{
+  border-radius:15px;
+  font-size:30px;
+  background:white;
+  border-width:0;
+  width:500px;
+  height:100px;
+}
+.inputs{
+    width:250px;
+    height:50px;
+    border-width:0;
+    border-radius:9px;
+    background:white;
+}
+.seperation-divs{
+  margin-top:30px;
+}
+table{
+  text-align:center;
+  width:64%;
+  margin-left:18%
+}
+th{
+  font-weight:bold;
+  background:white;
+}
+.player_add{
+  background:green;
+  color:white;
+  border-width:0;
+  height:50px;
+  width:50px;
+  font-size:30px;
+  border-radius:30px;
+}
+.player_remove{
+  background:red;
+  color:white;
+  border-width:0;
+  height:50px;
+  width:50px;
+  font-size:30px;
+  border-radius:30px;
+}
+.name{
+  background:white;
+}
+
+.topbar{
+  position:absolute;
+  left:5%;
+  top:0%;
+  height:35px;
+  background:rgb(255, 255, 255);
+  text-align:right;
+  margin:0;
+  width:90%;
+  -webkit-app-region:drag;
+}
+
+.topbar-index{
+  height:35px;
+  background:rgb(255, 255, 255);
+  text-align:right;
+  margin:0;
+  width:95%;
+  -webkit-app-region:drag;
+}
+
+#exit{
+  position: absolute;
+  top:0;
+  left:95%;
+  border-radius:0;
+  width:5%;
+  height:35px;
+  background:red;
+  color:white;
+  text-align: center;
+  border-width: 0;
+}
+
+#back{
+  position: absolute;
+  top:0;
+  left:0%;
+  border-radius:0;
+  width:5%;
+  height:35px;
+  background:orange;
+  color:white;
+  text-align: center;
+  border-width: 0;
+}
+
+button:focus{
+  outline:0;
+}

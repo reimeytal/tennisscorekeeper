@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Home - Tennis Score Keeper</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="index.js"></script>
+  </head>
+  <body>
+    <div class="topbar-index" style="left:0%; width:95%">
+      <button id="exit">X</button>
+    </div>
+    <script>
+    document.querySelector("#exit").onclick = () => {
+      ipcRenderer.send("quit", null);
+    };
+    </script>
+    <h1>Tennis Score Keeper</h1>
+    <button id="create-game" class="select-buttons">Create Game</button>
+    <div class="seperation-divs">
+      <button id="join-game" class="select-buttons">Join Game</button>
+    </div>
+  </body>
+</html>
